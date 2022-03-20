@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <section class="start">
+        <header>
+            <h1>QUIZ</h1>
+        </header>
+        <div class="main_quest">
+            <div class="main__quest-block">
+                <h2>QUIZ</h2>
+                <div class="quest__block-content">
+                    <ol>
+                        <li>You will have only <b>15 seconds</b> per each question.</li>
+                        <li>Once you select your answer, you can't reselect.</li>
+                        <li>You can't select any option once time goes off.</li>
+                        <li>You can't exit from Quiz while you playing.</li>
+                        <li>You'll get points on the basis of your correct answer.</li>
+                    </ol>
+                </div>
+                <button class="start_btn">Start Quiz</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="quiz_box hidden">
+        <header>
+            <h2>QUIZ</h2>
+            <div class="timer">
+                <div class="time_text">time left:</div>
+                <div class="time_number">15</div>
+            </div>
+        </header>
+        <main>
+            <div class="que_text">
+               <!--  <span>What does HTML stand for?</span> -->
+            </div>
+            <div class="answ_list">
+            <!--     <div class="answ">
+                    <span>Hyper Text Preprocessor</span>
+                    <div class="icon check"><i class="fa fa-check"></i></div>
+                </div>
+                <div class="answ">
+                    <span>Hyper Text Markup Language</span>
+                    <div class="icon incorr"><i class="fa fa-times"></i></div>
+                </div>
+                <div class="answ">
+                    <span>Hyper Text Multiple Language</span>
+                </div>
+                <div class="answ">
+                    <span>Hyper Tool Multi Language</span>
+                </div>
+            </div> -->
+        </main>
+
+        <footer>
+            <div class="total">
+                <span>
+                    <p class="count">1</p><p>of 5</p> Questions
+                </span>
+                <button class="next">Next</button>
+            </div>
+        </footer>
+
+        </section>
+
+        <section class="result_box hidden">
+            <div class="icon">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            </div>
+            <div class="complete_text">You've completed the Quiz!</div>
+            <span class="score">You got <p>2</p> out of <p>5</p></span>
+            <div class="buttons">
+                <button class="btn restart">Replay Quiz</button>
+                <button class="btn quit">Quit Quiz</button>
+            </div>
+        </section>
+
+        <script src="script.js"></script>
+        <script src="questions.js"></script>
+</body>
+
+</html> 
