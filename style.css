@@ -145,7 +145,6 @@ body{
     border: 1px solid #fff;
     border-radius: 5px;
     padding-left: 5px;
-    cursor: pointer;
     transition: all 0.2s;
     cursor: pointer;
 }
@@ -201,6 +200,7 @@ footer .total span p {
     padding-right: 5px;
 }
 footer .total .next{
+    
     color:#2c2c2c;
     width: 60px;
     border: none;

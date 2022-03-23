@@ -7,6 +7,7 @@ const infoBlock = document.querySelector(".main_quest");
 const quizBox = document.querySelector(".quiz_box");
 const resultbox = document.querySelector(".result_box");
 const answerList = document.querySelector(".answ_list");
+const score = document.querySelector(".score");
 
 const totalQuestCount = document.querySelector(".total span");
 
@@ -15,32 +16,52 @@ const timerLeft = document.querySelector(".time_number");
 const questText = document.querySelector(".que_text");
 
 let questCount = 0;
+let timeCount;
+let correctAnsCount = 0;
+let timeValue = 15;
 
 startBtn.addEventListener('click', function () {
     infoBlock.classList.add('hidden');
     quizBox.classList.remove('hidden');
     getQuestions(0)
+    startTimer(timeValue)
 });
+
+restartBtn.addEventListener('click',function(){
+    infoBlock.classList.add('hidden');
+    resultbox.classList.add('hidden');
+    quizBox.classList.remove('hidden');
+    getQuestions(0)
+    correctAnsCount = 0;
+    clearInterval(timeCount)
+    startTimer(timeValue)
+})
 
 quitBtn.addEventListener('click', function () {
     infoBlock.classList.remove('hidden');
     quizBox.classList.add('hidden');
     resultbox.classList.add('hidden');
+    correctAnsCount = 0;
+    clearInterval(timeCount)
 });
 
-function Next(){
+function next(){
     answerList.style.pointerEvents = 'auto';
     if (questCount < questions.length - 1) {
         questCount++;
         getQuestions(questCount);
+        clearInterval(timeCount)
+        startTimer(timeValue)
     } else {
         resultbox.classList.remove('hidden');
         quizBox.classList.add('hidden');
         questCount = 0;
+        showResult();
     }
+    
 }
 
-nextBtn.addEventListener('click', Next)
+nextBtn.addEventListener('click', next)
 
 function getQuestions(index) {
     let quest = `<span>${questions[index].question}</span>`;
@@ -76,10 +97,8 @@ function toggleAnswer(){
     }
 }
 
-let correctAnsCount = 0;
-
-
 function selectedAnsw(answ){
+   clearInterval(timeCount)
    let userAnswer = String(answ.textContent.toLowerCase().trim())
    let correctAnswer = String(questions[questCount].correct.toLowerCase().trim())
    if(correctAnswer == userAnswer){
@@ -87,15 +106,32 @@ function selectedAnsw(answ){
        answ.classList.add('correct')
        answ.innerHTML += `<div class="icon check"><i class="fa fa-check"></i></div>`
        answerList.style.pointerEvents = 'none';
-       setTimeout(Next,1000)
    }
    else{
        answ.classList.add('incorrect')
        answ.innerHTML += `<div class="icon incorr"><i class="fa fa-times"></i></div>`
        answerList.style.pointerEvents = 'none';
-       setTimeout(Next,1000)
    }
 }
 
+function startTimer(time){
+    timeCount = setInterval(timer,1000);
+    function timer(){
+        timerLeft.textContent = time
+        time--
+        if(time < 9){
+            let left = timerLeft.textContent;
+            timerLeft.textContent = `0${left}`;
+        }
+        if(time < 0 ){
+            clearInterval(timeCount);
+            timerLeft.textContent = "00"
+            setTimeout(next,400)
+        }
+    }
 
+}
 
+function showResult(){
+    score.innerHTML = `You got <p>${correctAnsCount}</p> out of <p>${questions.length}</p>`
+}
